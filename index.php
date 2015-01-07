@@ -7,11 +7,12 @@
 </header>
 <?php the_content(); ?>
 <footer class="article footer">
+</footer>
+</article>
+
 <?php endwhile; ?>
 <p><?php next_posts_link("&Auml;ltere Eintr&auml;ge") ?> | <?php previous_posts_link("Neuere Eintr&auml;ge") ?></p>
-</footer>
 <?php endif ?>
-</article>
 
 </content>
 <?php get_footer(); ?>
