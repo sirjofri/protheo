@@ -5,3 +5,39 @@ Description: Template for proTheoTV
 Author: sirjofri
 Author URI: https://github.com/user/sirjofri
 */
+
+@media screen {
+body {
+	background-color:#000;
+	}
+.wrap.wrapper {
+	margin:0px auto;
+	padding:0px;
+	width:1000px;
+	background-color:rgba(255,255,255,0.8);
+	border-radius:15px;
+	}
+.box {
+	margin:0px;
+	padding:5px 40px;
+	}
+.menu.headermenu {
+	position:fixed;
+	top:100px;
+	left:0px;
+	background-color:rgba(255,255,255,0.8);
+	border-top-right-radius:15px;
+	border-bottom-right-radius:15px;
+	width:60px;
+	}
+#menu-hauptmenue {
+	padding-top:40px;
+	background-color:#000;
+	}
+#menu-hauptmenue .menu-item {
+	display:none;
+	}
+#menu-hauptmenue:hover .menu-item {
+	display:block;
+	}
+}

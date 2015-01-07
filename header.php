@@ -7,10 +7,10 @@
 <link rel="pingback" href="<?php bloginfo("pingback_url"); ?>">
 <?php wp_head(); ?>
 </head>
-<body>
+<body class="custom-background">
 
 <div class="wrap wrapper">
 <header class="box header">
-<h1><?php bloginfo("name"); ?></h1>
+<h1><a href="<?php bloginfo("url"); ?>"><?php bloginfo("name"); ?></a></h1>
 <h3><?php bloginfo("description"); ?></h3>
 </header>
