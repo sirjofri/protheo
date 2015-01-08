@@ -9,6 +9,8 @@
 <?php the_content(); ?>
 <footer class="article footer">
 </footer>
+<a href="javascript:void(0)" onclick="toggle_comments();"><?php just_variable("commentToggleBox"); ?></a>
+<?php comments_template(); ?>
 </article>
 
 <?php endwhile; ?>

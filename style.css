@@ -25,19 +25,47 @@ body {
 	position:fixed;
 	top:100px;
 	left:0px;
-	background-color:rgba(255,255,255,0.8);
+	/*background-color:rgba(255,255,255,0.8);*/
 	border-top-right-radius:15px;
 	border-bottom-right-radius:15px;
-	width:60px;
+	padding:0px;
 	}
 #menu-hauptmenue {
-	padding-top:40px;
-	background-color:#000;
+	border-top-right-radius:15px;
+	border-bottom-right-radius:15px;
+	padding-left:0px;
 	}
 #menu-hauptmenue .menu-item {
-	display:none;
+	height:60px;
+	width:60px;
+	list-style-type:none;
+	margin:0px;
+	padding:0px 0px 0px 0px;
+	background-color:rgba(255,255,255,0.4);
+	border-top-right-radius:15px;
+	border-bottom-right-radius:15px;
+	border:solid 1px;
+	overflow:hidden;
 	}
-#menu-hauptmenue:hover .menu-item {
+#menu-hauptmenue .menu-item a {
 	display:block;
+	height:60px;
+	padding:20px 15px 0px 75px;
+	}
+#menu-hauptmenue .menu-item:hover {
+	width:auto;
+	}
+#menu-hauptmenue .menu-item-object-category,
+#menu-hauptmenue .menu-item-object-page {
+	}
+#menu-hauptmenue .menu-item-custom.menu-item-object-custom {
+	display:block;
+	}
+#menu-hauptmenue:hover .menu-item-object-category,
+#menu-hauptmenue:hover .menu-item-object-page {
+	display:block;
+	}
+#createcomment {
+	display:none;
 	}
 }
