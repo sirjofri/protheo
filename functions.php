@@ -10,6 +10,13 @@ $pt_use_just_variables=false; // Soll das Plugin "just_variables" benutzt werden
 //Allgemein
 $pt_var['copyright']="&copy; Copyright 2015 sirjofri"; //Text für die unterste Zeile, meistens Copyright-Angaben
 $pt_var['created_in']="Erstellt in:"; //steht unter dem Artikeltitel und bezeichnet die Kategorie.
+$pt_var['menuButton']="Menü"; //bezeichnet den Button, der das Menü öffnet
+$pt_var['menuButtonImage']="videos.png"; //Hintergrund für den Button, der das Menü öffnet
+
+//Suche
+$pt_var['searchHeader']="Suche"; //Überschrift für das Suchformular auf der Suchseite
+$pt_var['searchResultsHeader']="Suchergebnisse"; //Überschrift für die Suchergebnisse auf der Suchseite
+$pt_var['nothingFound']="Leider nichts gefunden ;-("; //Nachricht: Wenn nichts gefunden
 
 // Kommentare
 $pt_var['commentHead']="Kommentar"; //Überschrift für Kommentar-Erstell-Box
@@ -82,5 +89,18 @@ add_action( "after_setup_theme", "custom_theme_setup");
 		return $pt_var[$id];
 	}
 }*/
+
+function arphabet_widgets_init() {
+	register_sidebar(array(
+		'name' => 'Dashbar',
+		'id' => 'dash_first_area',
+		'description' => 'Widgets erscheinen im Menü',
+		'before_widget' => '<div id="%1$s" class="widget %2$s">',
+		'after_widget' => '</div><hr class="widgetrow">',
+		'before_title' => '<h2 class="rounded">',
+		'after_title' => '</h2>',
+	));
+}
+add_action('widgets_init','arphabet_widgets_init');
 
 ?>
