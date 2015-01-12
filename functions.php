@@ -103,4 +103,28 @@ function arphabet_widgets_init() {
 }
 add_action('widgets_init','arphabet_widgets_init');
 
+function pt_get_menu_text() {
+	if(!current_user_can("read")) {
+wp_die( __("You do not have sufficient permissions to access this page.") );
+} else {
+echo "<div class=\"wrap\">";
+echo "<h2>ProTheoTV Hilfe</h2>";
+echo "<p class=\"description\">Das Theme sollte eigentlich ohne weitere Probleme funktionieren. Dennoch gibt es hier eine Hilfe zur Bedienung</p>";
+echo "<h3>Module/Bereiche/Begriffe</h3>";
+echo "<p>Zur Klärung einiger Begriffe:</p>";
+echo "<table border=\"0\" style=\"border:solid 1px;\">";
+echo "<tr><td style=\"padding:10px;font-weight:bold;\">Dashboard/Dash</td><td>Menü, das sich über die Menü-Schaltfläche von oben in das Fenster einschieben lässt. <em>Nicht mit dem Administrationstool von Wordpress verwechseln!</em></td></tr>";
+echo "</table>";
+echo "<h3>Dashboard/Dash</h3>";
+echo "<p>Das Dashboard ist der Teil, der nach Drücken auf die Menü-Schaltfläche oben rechts sich von oben nach unten in den Bildschirm hineinschiebt, ähnlich wie bei Smartphones.</p>";
+echo "<p>Sein Inhalt ist bis auf Kleinigkeiten durch das Tool <a href=\"".get_bloginfo("url")."/wp-admin/widgets.php\">Widgets</a> konfigurierbar.</p>";
+echo "</div>";
+}
+}
+
+function my_plugin_menu() {
+	add_theme_page("proTheoTV", "ProTheoTV Hilfe", "read", "proTheoTV-Menu", "pt_get_menu_text");
+}
+add_action("admin_menu","my_plugin_menu");
+
 ?>
