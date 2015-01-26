@@ -2,10 +2,6 @@
 <html lang="de">
 
 <head>
-<?php
-global $pt_use_just_variables;
-global $pt_var;
-?>
 <title><?php wp_title(); ?></title>
 <link rel="stylesheet" href="<?php bloginfo("stylesheet_url"); ?>" type="text/css">
 <link rel="pingback" href="<?php bloginfo("pingback_url"); ?>">
@@ -27,7 +23,7 @@ foreach((array) $items as $key => $menu_item) {
 	echo "\/*Menu not defined*\/"; //Error Fallback
 }
 
-echo ".menubutton { background:url(".get_bloginfo("url")."/images/menu/".($pt_use_just_variables?just_variable("menubutton",FALSE):$pt_var['menuButtonImage']).") no-repeat left top; }\n";
+echo ".menubutton { background:url(".get_bloginfo("url")."/images/menu/".pt_get_variable("menuButtonImage").") no-repeat left top; }\n";
 
 echo ".box.header { background:url(".header_image().") no-repeat left top; }\n";
 ?>

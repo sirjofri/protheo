@@ -1,15 +1,10 @@
-<?php
-global $pt_use_just_variables;
-global $pt_var;
-?>
-
 <footer class="box footer">
-<p><?php echo $pt_use_just_variables?just_variable("copyright",FALSE):$pt_var["copyright"]; ?></p>
+<p><?php echo pt_get_variable("copyright"); ?></p>
 </footer>
 </div> <?php //wrap ?>
 
 <div class="menubutton" id="menubutton" onclick="show_menu();">
-<?php echo $pt_use_just_variables?just_variable("menuButton",FALSE):$pt_var["menuButton"]; ?></p>
+<?php echo pt_get_variable("menuButton"); ?>
 </div>
 
 <div id="overlay" style="display:block;">

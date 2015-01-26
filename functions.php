@@ -193,4 +193,10 @@ function my_plugin_menu() {
 }
 add_action("admin_menu","my_plugin_menu");
 
+function pt_get_variable($name)
+{
+	global $wpdb;
+	return $wpdb->get_var("SELECT content FROM ".$wpdb->prefix."protheotv"." WHERE name='".$name."'");
+}
+
 ?>
