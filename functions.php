@@ -104,26 +104,56 @@ function arphabet_widgets_init() {
 add_action('widgets_init','arphabet_widgets_init');
 
 function pt_get_menu_text() {
-	if(!current_user_can("read")) {
+	if(!current_user_can("edit_theme_options")) {
 wp_die( __("You do not have sufficient permissions to access this page.") );
 } else {
+global $wpdb;
+//$wpdb->query("CREATE TABLE IF NOT EXISTS protheotv ( id INT NOT NULL AUTO_INCREMENT PRIMARY KEY, name VARCHAR(30), content VARCHAR(255);");
+$table_name=$wpdb->prefix."protheotv";
+if($wpdb->get_var("SHOW TABLES LIKE '$table_name';") !=$table_name) {
+
+//Create Table
+$charset_collate=$wpdb->get_charset_collate();
+$sql="CREATE TABLE IF NOT EXISTS $table_name (
+	id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
+	name VARCHAR(30),
+	content VARCHAR(255)
+	) $charset_collate;";
+require_once(ABSPATH."wp-admin/includes/upgrade.php");
+dbDelta($sql);
+
+//and fill it!
+$wpdb->insert($table_name,array("name"=>"copyright","content"=>"&copy; Copyright 2015 ProTheoTV"));
+$wpdb->insert($table_name,array("name"=>"created_in","content"=>"Erstellt in"));
+$wpdb->insert($table_name,array("name"=>"menuButton","content"=>"Menü"));
+$wpdb->insert($table_name,array("name"=>"menuButtonImage","content"=>"videos.png"));
+$wpdb->insert($table_name,array("name"=>"searchHeader","content"=>"Suche"));
+$wpdb->insert($table_name,array("name"=>"searchResultsHeader","content"=>"Suchergebnisse"));
+$wpdb->insert($table_name,array("name"=>"nothingFound","content"=>"Leider nichts gefunden."));
+$wpdb->insert($table_name,array("name"=>"commentHead","content"=>"Kommentare"));
+$wpdb->insert($table_name,array("name"=>"commentAuthor","content"=>"Autor"));
+$wpdb->insert($table_name,array("name"=>"commentEmail","content"=>"E-Mail"));
+$wpdb->insert($table_name,array("name"=>"commentUrl","content"=>"Website"));
+$wpdb->insert($table_name,array("name"=>"commentComment","content"=>"Kommentar"));
+$wpdb->insert($table_name,array("name"=>"commentSubmit","content"=>"Senden"));
+$wpdb->insert($table_name,array("name"=>"commentToggleBox","content"=>"Kommentar erstellen"));
+$wpdb->insert($table_name,array("name"=>"commentApproveWarning","content"=>"Kommentar muss erst bestätigt werden"));
+}
 echo "<div class=\"wrap\">";
-echo "<h2>ProTheoTV Hilfe</h2>";
-echo "<p class=\"description\">Das Theme sollte eigentlich ohne weitere Probleme funktionieren. Dennoch gibt es hier eine Hilfe zur Bedienung</p>";
-echo "<h3>Module/Bereiche/Begriffe</h3>";
-echo "<p>Zur Klärung einiger Begriffe:</p>";
-echo "<table border=\"0\" style=\"border:solid 1px;\">";
-echo "<tr><td style=\"padding:10px;font-weight:bold;\">Dashboard/Dash</td><td>Menü, das sich über die Menü-Schaltfläche von oben in das Fenster einschieben lässt. <em>Nicht mit dem Administrationstool von Wordpress verwechseln!</em></td></tr>";
-echo "</table>";
-echo "<h3>Dashboard/Dash</h3>";
-echo "<p>Das Dashboard ist der Teil, der nach Drücken auf die Menü-Schaltfläche oben rechts sich von oben nach unten in den Bildschirm hineinschiebt, ähnlich wie bei Smartphones.</p>";
-echo "<p>Sein Inhalt ist bis auf Kleinigkeiten durch das Tool <a href=\"".get_bloginfo("url")."/wp-admin/widgets.php\">Widgets</a> konfigurierbar.</p>";
+echo "<h2>ProTheoTV eXtra Einstellungen</h2>";
+echo "<h3>Variablen</h3>";
+$result=$wpdb->get_results("SELECT * FROM $table_name;",ARRAY_A);
+foreach($result as $row)
+{
+//echo $row['id']."->".$row['name']."->".$row['content']."<br>";
+echo $row['name'].": <input type=\"text\" name=\"".$row['name']."\" value=\"".htmlspecialchars($row['content'])."\"><br>";
+}
 echo "</div>";
 }
 }
 
 function my_plugin_menu() {
-	add_theme_page("proTheoTV", "ProTheoTV Hilfe", "read", "proTheoTV-Menu", "pt_get_menu_text");
+	add_theme_page("proTheoTV", "proTheoTV Einstellungen", "read", "proTheoTV-Menu", "pt_get_menu_text");
 }
 add_action("admin_menu","my_plugin_menu");
 
