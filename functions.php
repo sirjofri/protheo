@@ -110,6 +110,27 @@ wp_die( __("You do not have sufficient permissions to access this page.") );
 global $wpdb;
 //$wpdb->query("CREATE TABLE IF NOT EXISTS protheotv ( id INT NOT NULL AUTO_INCREMENT PRIMARY KEY, name VARCHAR(30), content VARCHAR(255);");
 $table_name=$wpdb->prefix."protheotv";
+
+$pt_variables=array(
+"copyright",
+"created_in",
+"menuButton",
+"menuButtonImage",
+"searchHeader",
+"searchResultsHeader",
+"nothingFound",
+"commentHead",
+"commentAuthor",
+"commentEmail",
+"commentUrl",
+"commentComment",
+"commentSubmit",
+"commentToggleBox",
+"commentApproveWarning"
+);
+$pt_contents=array("&copy; Copyright 2015 ProTheoTV","Erstellt in");
+
+//Create Table if necessary
 if($wpdb->get_var("SHOW TABLES LIKE '$table_name';") !=$table_name) {
 
 //Create Table
@@ -122,7 +143,7 @@ $sql="CREATE TABLE IF NOT EXISTS $table_name (
 require_once(ABSPATH."wp-admin/includes/upgrade.php");
 dbDelta($sql);
 
-//and fill it!
+//and fill it! change it to foreach(...) with loop
 $wpdb->insert($table_name,array("name"=>"copyright","content"=>"&copy; Copyright 2015 ProTheoTV"));
 $wpdb->insert($table_name,array("name"=>"created_in","content"=>"Erstellt in"));
 $wpdb->insert($table_name,array("name"=>"menuButton","content"=>"Menü"));
@@ -139,21 +160,36 @@ $wpdb->insert($table_name,array("name"=>"commentSubmit","content"=>"Senden"));
 $wpdb->insert($table_name,array("name"=>"commentToggleBox","content"=>"Kommentar erstellen"));
 $wpdb->insert($table_name,array("name"=>"commentApproveWarning","content"=>"Kommentar muss erst bestätigt werden"));
 }
+
+//Now the page file:
+//with loop and $pt_variables
+foreach($pt_variables as $pt_name)
+{
+if(@$_POST[$pt_name]!="")
+{
+$content=$_POST[$pt_name];
+$wpdb->update($table_name,array("content"=>"$content"),array("name"=>"$pt_name"));
+}
+}
+
 echo "<div class=\"wrap\">";
 echo "<h2>ProTheoTV eXtra Einstellungen</h2>";
 echo "<h3>Variablen</h3>";
+echo "<form action=\"".get_bloginfo("wpurl")."/wp-admin/themes.php?page=proTheoTV-Settings\" method=\"post\">";
+echo "<table border=\"0\">";
 $result=$wpdb->get_results("SELECT * FROM $table_name;",ARRAY_A);
 foreach($result as $row)
 {
 //echo $row['id']."->".$row['name']."->".$row['content']."<br>";
-echo $row['name'].": <input type=\"text\" name=\"".$row['name']."\" value=\"".htmlspecialchars($row['content'])."\"><br>";
+echo "<tr><td>".$row['name'].":</td><td><input type=\"text\" name=\"".$row['name']."\" value=\"".htmlspecialchars($row['content'])."\" size=\"100\"></td></tr>";
 }
+echo "</table><input type=\"submit\" value=\"Speichern\"></form>";
 echo "</div>";
 }
 }
 
 function my_plugin_menu() {
-	add_theme_page("proTheoTV", "proTheoTV Einstellungen", "read", "proTheoTV-Menu", "pt_get_menu_text");
+	add_theme_page("proTheoTV", "proTheoTV Einstellungen", "read", "proTheoTV-Settings", "pt_get_menu_text");
 }
 add_action("admin_menu","my_plugin_menu");
 
