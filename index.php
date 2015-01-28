@@ -8,13 +8,15 @@
 </header>
 <?php the_content(); ?>
 <footer class="article footer">
-<?php comments_popup_link("Keine Kommentare", "1 Kommentar", "% Kommentare"); ?>
+<p><?php comments_popup_link(pt_get_variable("noComment"), pt_get_variable("oneComment"), pt_get_variable("moreComments")); ?></p>
 </footer>
 </article>
 
 <?php endwhile; ?>
+<footer>
 <p><?php previous_posts_link(pt_get_variable("previousPosts")); echo " "; next_posts_link(pt_get_variable("nextPosts")); ?></p>
 <?php endif ?>
+</footer>
 
 </content>
 <?php get_footer(); ?>

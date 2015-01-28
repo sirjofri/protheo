@@ -24,6 +24,9 @@ if(have_posts()): ?>
 <p class="arthead meta searchresult"><?php the_date("l, j. F Y |"); ?> <?php echo pt_get_variable("created_in"); ?> <?php the_category(", "); ?></p>
 </header>
 <?php the_excerpt(); ?>
+<footer>
+<p><?php comments_popup_link(pt_get_variable("noComment"), pt_get_variable("oneComment"), pt_get_variable("moreComments")); ?></p>
+</footer>
 </article>
 <?php endwhile; ?>
 <?php else: ?>

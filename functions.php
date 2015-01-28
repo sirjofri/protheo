@@ -25,7 +25,12 @@ function custom_theme_setup() {
 
 add_theme_support("html5", array("search-form","comment-form","comment-list","gallery","caption"));
 add_theme_support("custom-background");
-add_theme_support("custom-header");
+$custom_header_args=array(
+"width" => 1000,
+"height" => 133,
+"uploads" => true,
+);
+add_theme_support("custom-header",$custom_header_args);
 
 // Register main menu
 function register_my_menu() {
@@ -75,6 +80,9 @@ $pt_variables=array(
 "commentApproveWarning",
 "previousPosts",
 "nextPosts",
+"noComment",
+"oneComment",
+"moreComments",
 );
 $pt_contents=array(
 "&copy; Copyright 2015 ProTheoTV",
@@ -94,6 +102,9 @@ $pt_contents=array(
 "Kommentar muss erst bestätigt werden.",
 "&larr; Ältere Beiträge",
 "Neuere Beiträge &rarr;",
+"Keine Kommentare",
+"1 Kommentar",
+"% Kommentare",
 );
 
 //Create Table if necessary

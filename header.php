@@ -24,8 +24,9 @@ foreach((array) $items as $key => $menu_item) {
 }
 
 echo ".menubutton { background:url(".get_bloginfo("url")."/images/menu/".pt_get_variable("menuButtonImage").") no-repeat left top; }\n";
-
-echo ".box.header { background:url(".header_image().") no-repeat left top; }\n";
+echo ".box.header { background:url(";
+header_image();
+echo ") no-repeat left top;border-top-left-radius:15px;border-top-right-radius:15px; }\n";
 ?>
 </style>
 <?php wp_head(); ?>
