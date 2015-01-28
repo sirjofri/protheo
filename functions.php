@@ -1,48 +1,4 @@
 <?php
-/************************************
-Diese Konfigurationsdatei ist zur alternativen 
-Konfiguration der Variablen.
-
-************************************/
-
-$pt_use_just_variables=false; // Soll das Plugin "just_variables" benutzt werden oder sollen die folgenden Variablen benutzt werden? true/false
-
-//Allgemein
-$pt_var['copyright']="&copy; Copyright 2015 sirjofri"; //Text für die unterste Zeile, meistens Copyright-Angaben
-$pt_var['created_in']="Erstellt in:"; //steht unter dem Artikeltitel und bezeichnet die Kategorie.
-$pt_var['menuButton']="Menü"; //bezeichnet den Button, der das Menü öffnet
-$pt_var['menuButtonImage']="videos.png"; //Hintergrund für den Button, der das Menü öffnet
-
-//Suche
-$pt_var['searchHeader']="Suche"; //Überschrift für das Suchformular auf der Suchseite
-$pt_var['searchResultsHeader']="Suchergebnisse"; //Überschrift für die Suchergebnisse auf der Suchseite
-$pt_var['nothingFound']="Leider nichts gefunden ;-("; //Nachricht: Wenn nichts gefunden
-
-// Kommentare
-$pt_var['commentHead']="Kommentar"; //Überschrift für Kommentar-Erstell-Box
-$pt_var['commentAuthor']="Name"; //Bezeichnung für Eingabefeld für den Ersteller-Namen
-$pt_var['commentEmail']="Email"; //Bezeichnung für Eingabefeld für die Ersteller-Mail
-$pt_var['commentUrl']="Homepage"; //Bezeichnung für Eingabefeld für die Ersteller-Homepage
-$pt_var['commentComment']="Kommentar"; //Überschrift für direktes Eingabefeld des Kommentars (großes Feld)
-$pt_var['commentSubmit']="Senden"; //Button zum Speichern des Kommentars
-$pt_var['commentToggleBox']="Kommentar erstellen"; //Link zum Anzeigen/Verstecken der Kommentar-Erstell-Box
-$pt_var['commentApproveWarning']="Kommentar muss erst best&auml;tigt werden"; //Warntext zum Anzeigen einer benötigten Bestätigung eines Kommentars
-
-// Dateipfade zu den Menüpunktbildern
-$pt_var['img1-1']="/images/test1.png"; //1. Menüpunkt, 1. Bild (=icon); img(Menüpunktnummer)-(Bildnummer)
-$pt_var['img1-2']="/images/test2.png"; //1. Menüpunkt, 2. Bild (=Text)
-$pt_var['img2-1']="/images/test1.png"; //etc...
-$pt_var['img2-2']="/images/test2.png";
-$pt_var['img3-1']="/images/test1.png";
-$pt_var['img3-2']="/images/test2.png";
-$pt_var['img4-1']="/images/test1.png";
-$pt_var['img4-2']="/images/test2.png";
-
-
-/*************************************
-Ab Hier darf nichts mehr abgeändert werden!
-*************************************/
-
 /*************************************
 General Template functions
 *************************************/
@@ -80,16 +36,6 @@ add_action( 'init', 'register_my_menu' );
 }
 add_action( "after_setup_theme", "custom_theme_setup");
 
-/*function pt_get_text($id)
-{
-	if($use_just_variables)
-	{
-		return just_variable($id);
-	} else {
-		return $pt_var[$id];
-	}
-}*/
-
 function arphabet_widgets_init() {
 	register_sidebar(array(
 		'name' => 'Dashbar',
@@ -126,9 +72,29 @@ $pt_variables=array(
 "commentComment",
 "commentSubmit",
 "commentToggleBox",
-"commentApproveWarning"
+"commentApproveWarning",
+"previousPosts",
+"nextPosts",
 );
-$pt_contents=array("&copy; Copyright 2015 ProTheoTV","Erstellt in");
+$pt_contents=array(
+"&copy; Copyright 2015 ProTheoTV",
+"Erstellt in",
+"Menü",
+"videos.png",
+"Suche",
+"Suchergebnisse",
+"Leider nichts gefunden.",
+"Kommentare",
+"Autor",
+"E-Mail",
+"Website",
+"Kommentar",
+"Senden",
+"Kommentar erstellen",
+"Kommentar muss erst bestätigt werden.",
+"&larr; Ältere Beiträge",
+"Neuere Beiträge &rarr;",
+);
 
 //Create Table if necessary
 if($wpdb->get_var("SHOW TABLES LIKE '$table_name';") !=$table_name) {
@@ -144,21 +110,11 @@ require_once(ABSPATH."wp-admin/includes/upgrade.php");
 dbDelta($sql);
 
 //and fill it! change it to foreach(...) with loop
-$wpdb->insert($table_name,array("name"=>"copyright","content"=>"&copy; Copyright 2015 ProTheoTV"));
-$wpdb->insert($table_name,array("name"=>"created_in","content"=>"Erstellt in"));
-$wpdb->insert($table_name,array("name"=>"menuButton","content"=>"Menü"));
-$wpdb->insert($table_name,array("name"=>"menuButtonImage","content"=>"videos.png"));
-$wpdb->insert($table_name,array("name"=>"searchHeader","content"=>"Suche"));
-$wpdb->insert($table_name,array("name"=>"searchResultsHeader","content"=>"Suchergebnisse"));
-$wpdb->insert($table_name,array("name"=>"nothingFound","content"=>"Leider nichts gefunden."));
-$wpdb->insert($table_name,array("name"=>"commentHead","content"=>"Kommentare"));
-$wpdb->insert($table_name,array("name"=>"commentAuthor","content"=>"Autor"));
-$wpdb->insert($table_name,array("name"=>"commentEmail","content"=>"E-Mail"));
-$wpdb->insert($table_name,array("name"=>"commentUrl","content"=>"Website"));
-$wpdb->insert($table_name,array("name"=>"commentComment","content"=>"Kommentar"));
-$wpdb->insert($table_name,array("name"=>"commentSubmit","content"=>"Senden"));
-$wpdb->insert($table_name,array("name"=>"commentToggleBox","content"=>"Kommentar erstellen"));
-$wpdb->insert($table_name,array("name"=>"commentApproveWarning","content"=>"Kommentar muss erst bestätigt werden"));
+//$wpdb->insert($table_name,array("name"=>"commentApproveWarning","content"=>"Kommentar muss erst bestätigt werden"));
+foreach($pt_variables as $key => $pt_name)
+{
+$wpdb->insert($table_name,array("name"=>$pt_name,"content"=>$pt_contents[$key]));
+}
 }
 
 //Now the page file:
