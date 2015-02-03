@@ -20,7 +20,7 @@ if(have_posts()): ?>
 <?php while(have_posts()): the_post(); ?>
 <article class="box article searchresult">
 <header class="article header searchresult">
-<h3><a href="<?php the_permalink(); ?>"><?php the_title(); ?></a> <em><?php the_author_posts_link(); ?></em></h3>
+<h3><a href="<?php the_permalink(); ?>"><?php the_title(); ?></a> <em><?php echo pt_get_variable("headerFrom");the_author_posts_link(); ?></em></h3>
 <p class="arthead meta searchresult"><?php the_date("l, j. F Y |"); ?> <?php echo pt_get_variable("created_in"); ?> <?php the_category(", "); ?></p>
 </header>
 <?php the_excerpt(); ?>

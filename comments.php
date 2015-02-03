@@ -27,7 +27,12 @@
 <div class="box list_comments">
 <?php foreach($comments as $comment) : ?>
 <div class="comment" id="comment-<?php comment_ID() ?>">
-<small class="commentmetadata"><?php comment_author_link() ?> <strong>|</strong> am <?php comment_date("l, j. F Y") ?> um <?php comment_time("H:i") ?> Uhr</small>
+<?php//<small class="commentmetadata"><?php echo get_wp_user_avatar($comment,32)." ";comment_author_link(); ?><?php// <strong>|</strong> am <?php comment_date("l, j. F Y"); ?><?php// um <?php comment_time("H:i"); ?><?php// Uhr</small>?>
+<small class="commentmetadata">
+<table border="0">
+<tr>
+<td rowspan="2"><?php echo get_wp_user_avatar($comment,40); ?></td><td><?php comment_author_link(); ?></td></tr><tr><td>am <?php comment_date("l, j. F Y"); ?> um <?php comment_time("H:i"); ?> Uhr</td></tr></table>
+</small>
 <?php comment_text() ?>
 <?php if ($comment->comment_approved == "0") : ?>
 <strong><?php echo pt_get_variable("commentApproveWarning"); ?></strong><br><?php endif; ?>

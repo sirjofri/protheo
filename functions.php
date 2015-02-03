@@ -83,6 +83,7 @@ $pt_variables=array(
 "noComment",
 "oneComment",
 "moreComments",
+"headerFrom",
 );
 $pt_contents=array(
 "&copy; Copyright 2015 ProTheoTV",
@@ -100,11 +101,12 @@ $pt_contents=array(
 "Senden",
 "Kommentar erstellen",
 "Kommentar muss erst bestätigt werden.",
-"&larr; Ältere Beiträge",
 "Neuere Beiträge &rarr;",
+"&larr; Ältere Beiträge",
 "Keine Kommentare",
 "1 Kommentar",
 "% Kommentare",
+"von ",
 );
 
 //Create Table if necessary

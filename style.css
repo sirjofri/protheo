@@ -125,7 +125,66 @@ div.closemenubutton {
 
 #createcomment {
 	display:none;
-	}
+}
+
+content > footer p {
+	margin-left:30px;
+}
+
+a, a:link, a:visited {
+	color:#f00;
+	text-decoration:none;
+}
+
+a:hover {
+	color:#a00;
+	text-decoration:underline;
+}
+
+header > h2 > em {
+	font-size:20px;
+	font-style:italic;
+	font-weight:normal;
+}
+
+}
+
+@media screen and (max-width:1000px) {
+.wrap.wrapper {
+	width:auto;
+}
+.headermenu {
+}
+.box.main {
+	padding:0px;
+	margin:0px;
+}
+.box.article {
+	padding:3px 20px;
+}
+}
+
+@media screen and (max-height:500px) {
+.headermenu {
+	top:0%;
+	margin-top:0px;
+	height:100%;
+	border-top:none;
+	border-bottom:none;
+}
+}
+
+@media screen and (max-width:500px) {
+.headermenu {
+	left:0%;
+	margin-left:0px;
+	width:100%;
+	border-left:none;
+	border-right:none;
+}
+.menubutton {
+	width:60px;
+}
 }
 
 #overlay.roll_in {
