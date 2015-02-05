@@ -17,4 +17,9 @@ function hide_menu()
 
 function setup()
 {
+	elements=document.getElementsByClassName("menu-item");
+	for(i=0;i<elements.length;i++)
+	{
+		elements[i].firstChild.setAttribute("title",elements[i].firstChild.innerHTML);
+	}
 }

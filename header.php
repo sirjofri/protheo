@@ -16,14 +16,15 @@ $menu=wp_get_nav_menu_object($locations[$menu_name]);
 $items=wp_get_nav_menu_items($menu);
 $counter=1;
 foreach((array) $items as $key => $menu_item) {
-	echo "#menu-item-".($menu_item->ID)." { background:url(".$url."/images/menu/".($menu_item->attr_title).".png) repeat left top; }\n"; // Print css line
-	echo "#menu-item-".($menu_item->ID).":hover { background: url(".$url."/images/menu/".($menu_item->attr_title)."_hover.png) no-repeat left top; }\n";
+	$bgimages=explode("-",$menu_item->attr_title);
+	echo "#menu-item-".($menu_item->ID)." { background:url(".wp_get_attachment_url($bgimages[0]).") repeat left top; }\n"; // Print css line
+	echo "#menu-item-".($menu_item->ID).":hover { background: url(".wp_get_attachment_url($bgimages[1]).") no-repeat left top; }\n";
 	$counter++;
 }} else {
 	echo "\/*Menu not defined*\/"; //Error Fallback
 }
 
-echo ".menubutton { background:url(".get_bloginfo("url")."/images/menu/".pt_get_variable("menuButtonImage").") no-repeat left top; }\n";
+echo ".menubutton { background:url(".wp_get_attachment_url(pt_get_variable("menuButtonImage")).") no-repeat left top; }\n";
 echo ".box.header { background:url(";
 header_image();
 echo ") no-repeat left top;border-top-left-radius:15px;border-top-right-radius:15px; }\n";
