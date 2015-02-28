@@ -148,6 +148,27 @@ header > h2 > em {
 	font-weight:normal;
 }
 
+.wrap > .footer {
+	border:solid 1px #bbb;
+	border-width:1px 0px 0px 0px;
+	padding-top:30px;
+}
+.wrap > .footer > .widget {
+	display:table-cell;
+	width:250px;
+	height:200px;
+	padding:20px;
+	border:solid 1px #bbb;
+	border-width:0px 0px 0px 1px;
+}
+.wrap > .footer > .widget:first-of-type {
+	border-width:0px;
+}
+.wrap > .footer > p {
+	text-align:center;
+	color:#777;
+}
+
 }
 
 @media screen and (max-width:1000px) {

@@ -1,4 +1,5 @@
 <footer class="box footer">
+<?php dynamic_sidebar("footer_area"); ?>
 <p><?php echo pt_get_variable("copyright"); ?></p>
 </footer>
 </div> <?php //wrap ?>
