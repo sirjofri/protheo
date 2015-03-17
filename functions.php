@@ -72,10 +72,12 @@ global $wpdb;
 $table_name=$wpdb->prefix."protheotv";
 
 $pt_variables=array(
+"draft_mode",
 "copyright",
 "created_in",
 "menuButton",
 "menuButtonImage",
+"menuButtonImage_hover",
 "searchHeader",
 "searchResultsHeader",
 "nothingFound",
@@ -95,10 +97,12 @@ $pt_variables=array(
 "headerFrom",
 );
 $pt_contents=array(
+"on",
 "&copy; Copyright 2015 ProTheoTV",
 "Erstellt in",
 "Menü",
-"videos.png",
+"normales bild",
+"bild bei mouseover",
 "Suche",
 "Suchergebnisse",
 "Leider nichts gefunden.",
@@ -205,6 +209,11 @@ if ( current_user_can('contributor') && !current_user_can('upload_files') )
 function allow_contributor_uploads() {
     $contributor = get_role('contributor');
     $contributor->add_cap('upload_files');
+}
+
+function pt_draft()
+{
+	return (pt_get_variable("draft_mode")=="on");
 }
 
 ?>

@@ -19,12 +19,14 @@ foreach((array) $items as $key => $menu_item) {
 	$bgimages=explode("-",$menu_item->attr_title);
 	echo "#menu-item-".($menu_item->ID)." { background:url(".wp_get_attachment_url($bgimages[0]).") repeat left top; }\n"; // Print css line
 	echo "#menu-item-".($menu_item->ID).":hover { background: url(".wp_get_attachment_url($bgimages[1]).") no-repeat left top; }\n";
+	echo (pt_draft()?"":"#menu-item-".($menu_item->ID)." a { color:rgba(0,0,0,0.0); }\n");
 	$counter++;
 }} else {
 	echo "\/*Menu not defined*\/"; //Error Fallback
 }
 
 echo ".menubutton { background:url(".wp_get_attachment_url(pt_get_variable("menuButtonImage")).") no-repeat left top; }\n";
+echo ".menubutton:hover { background:url(".wp_get_attachment_url(pt_get_variable("menuButtonImage_hover")).") no-repeat left top; }\n";
 echo ".box.header { background:url(";
 header_image();
 echo ") no-repeat left top;border-top-left-radius:15px;border-top-right-radius:15px; }\n";
@@ -32,7 +34,7 @@ echo ") no-repeat left top;border-top-left-radius:15px;border-top-right-radius:1
 </style>
 <?php wp_head(); ?>
 </head>
-<body class="custom-background" onload="setup();">
+<body class="custom-background">
 
 <div class="wrap wrapper">
 <header class="box header">

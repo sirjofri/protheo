@@ -4,7 +4,7 @@
 <article class="box article">
 <header class="article header">
 <h2><a href="<?php the_permalink() ?>"><?php the_title(); ?></a> <em><?php echo pt_get_variable("headerFrom");the_author_posts_link(); ?></em></h2>
-<p class="arthead meta"><?php the_date("l, j. F Y |"); ?> <?php echo pt_get_variable("created_in"); ?> <?php the_category(", "); ?></p>
+<p class="arthead meta"><?php the_time("l, j. F Y |"); ?> <?php echo pt_get_variable("created_in"); ?> <?php the_category(", "); ?></p>
 </header>
 <?php the_content(); ?>
 <footer class="article footer">
