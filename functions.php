@@ -185,7 +185,13 @@ echo "<p>Wenn man die Hintergrundbilder über die Medien-Funktion hochgeladen ha
 echo "<p>Was machen wir nun mit der ID? Wir gehen unter <code>Design > Menüs</code> in die Menüstruktur vom Hauptmenü (das Menü mit der Position <code>Hauptmenu</code>). Nun wird bei jedem einzelnen Menüpunkt das <code>HTML-Attribut title (optional)</code> wie folgt geändert:</p>";
 echo "<p><code>xx-yy</code>: <code>xx</code> ist die ID des Hintergrundbildes bei normalem Zustand, <code>yy</code> die des Hintergrundbildes, wenn man mit der Maus über dem Menüpunkt ruht (<em>hover</em> oder <em>mouseover</em>).</p>";
 echo "<p>Ich empfehle, die IDs der einzelnen Hintergrundbilder zuerst herauszufinden und zu notieren (Papier und Bleistift zum Beispiel), um nicht ständig zwischen den Menüs zu wechseln.</p>";
+echo "<h3>GitHub-Updater</h3>";
+echo "<p>Dieses Theme ist mittlerweile zu GitHub gewandert und ist kompatibel zum <a href=\"https://github.com/afragen/github-updater\" target=\"_blank\">github-updater</a>. Dadurch wird es wie die anderen Themes direkt auf Updates überprüft. Die Vorteile dessen brauche ich wohl nicht zu nennen...</p>";
 echo "<p>Weiterhin hoffe ich, dass diese Angaben dem Nutzer helfen und gut nachvollziehbar sind.</p>";
+
+echo "<h2>Changelog</h2>";
+echo "<h3>Version 3.1415</h3>";
+echo "<p>1. offizielle Version, <a href=\"https://github.com/sirjofri/protheo\" target=\"_blank\">die auch auf GitHub zu finden ist</a>. Sie ist kompatibel zum <a href=\"https://github.com/afragen/github-updater\" target=\"_blank\">github-updater</a> und enthält neuerdings einen screenshot!</p>";
 echo "</div>";
 }
 }
